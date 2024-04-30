@@ -11,6 +11,10 @@ resource_acess_role_map = {
     'kubernetes_pod' : {
         'service': "containers-kubernetes",
         'roles': ["Administrator", "Manager"]
+    },
+    'ibm_is_vpc' : {
+        'service': "is",
+        'roles': ["Administrator", "Manager"]
     }
 }
 

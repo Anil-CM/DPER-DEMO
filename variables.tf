@@ -7,10 +7,10 @@ variable "user_apikey" {
   type        = string
 }
 
-variable "cluster_id" {
-  description = "cluster id"
+variable "vpc_name" {
+  description = "vpc name "
   type        = string
-  default = "cnj769qf0pbnvjtep6f0"
+  default = "dper-demo-vpc"
 }
 
 variable "user_email" {
