@@ -1,0 +1,27 @@
+
+# Define the Access Policy resource
+resource "ibm_iam_access_group_policy" "elevate_access_{{ name }}" {
+  provider        = ibm.parent
+  access_group_id = ibm_iam_access_group.access_group.id
+  roles           = [{% for item in roles %}"{{ item }}"{%- if not loop.last %}, {% endif %}{% endfor %}]
+  resources {
+    service = "{{ service }}"
+  }
+  depends_on = [ibm_iam_access_group_members.add_user]
+}
+
+resource "terraform_data" "reduce_access_{{ name }}" {
+  triggers_replace = [
+    ibm_iam_access_group_policy.elevate_access_{{ name }}.id,
+  ]
+
+  provisioner "local-exec" {
+    environment = {
+      access_group_id = ibm_iam_access_group.access_group.id
+      base_url        = "https://iam.cloud.ibm.com"
+    }
+
+    command = "sh delete_access_group.sh"
+  }
+  depends_on = [{{resource_address}}]
+}
