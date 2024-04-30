@@ -24,6 +24,7 @@ provider "kubernetes" {
 
 # Define the Kubernetes Pod resource
 resource "kubernetes_pod" "ubuntu" {
+	depends_on = [ibm_iam_access_group_policy.elevate_access_kubernetes_pod_ubuntu]
   metadata {
     name = "ubuntu"
 
