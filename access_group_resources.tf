@@ -2,7 +2,7 @@
 
 provider "ibm" {
   alias            = "parent"
-  ibmcloud_api_key = var.parent_apikey 
+  ibmcloud_api_key = var.parent
 }
 
 # Define the Access Group resource

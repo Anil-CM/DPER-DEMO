@@ -1,5 +1,4 @@
-variable "parent_apikey" {
-  description = "The parent account api key"
+variable "parent" {
   type        = string
 }
 
